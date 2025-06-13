@@ -7,11 +7,12 @@
 
     <!-- Writing the JS script for the project here -->
      <script>
-        // testing script
-        console.log("Hello World!")
-
         // Problem Statement: To write a program to play Rock-Paper-Scissors against the computer
         // this program will have no GUI and run in the browser console.
+
+        // Computer will randomly select 'rock', 'paper' or 'scissors'
+        // User will prompt 'rock, 'paper or 'scissors'
+        // 
 
 
         // Get random string "Rock" or "Paper" or "Scissor" from computer
@@ -37,7 +38,7 @@
 
         function getHumanChoice () {
             //Store human player input inside a variable
-            let humanInput = prompt('Enter: Rock, Paper or Scissors');
+            let humanInput = prompt('Input: Rock, Paper or Scissors');
             return humanInput
         }
 
@@ -47,14 +48,37 @@
         // Keep track of Computer Score
         let computerScore = 0;
 
-        // Keeping track of the Human and Computer Score for one Round
-        // take humanChoice and computerChoice as parameters
-        // humanChoice is case insensative
-        function playRound(humanChoice = getHumanChoice().toLowerCase(), computerChoice = getComputerChoice()) {
-            // Write logic of the game ie. Rock beats Scissors, Scissors beat Paper and Paper beats Rock
-            if (humanChoice === 'rock' && computerChoice === 'scissors') {
-                console.log()
+        // Game Logic for a single match
+            // human choice should be case insensative
+        function playRound (humanChoice = getHumanChoice().toLowerCase(), computerChoice = getComputerChoice()) {
+        
+
+            // human wins only when computer choice is rock
+            if (humanChoice === 'paper' && computerChoice === 'rock') {
+                console.log(`You won! ${humanChoice} beats ${computerChoice}.`)
+            } 
+            // human wins only when computer choice is paper
+            else if (humanChoice === 'scissors' && computerChoice === 'paper') {
+                console.log(`You won! ${humanChoice} beats ${computerChoice}.`)
+            } 
+            // human wins only when computer choice is scissors
+            else if (humanChoice === 'rock' && computerChoice === 'scissors') {
+                console.log(`You won! ${humanChoice} beats ${computerChoice}.`)
+            } 
+            //it's a tie 
+            else if(humanChoice === computerChoice){
+                console.log(`it's a tie! you chose: ${humanChoice} and the computer chose: ${computerChoice}.`)
             }
+            //Computer wins
+            else {
+                console.log(`Computer Won! ${computerChoice} beats ${humanChoice}.`)
+            }
+        }
+
+        // game will be for five rounds
+        // if computer wins a round it gets 1 point viceversa
+        function playGame(){
+            
         }
 
      </script>
