@@ -3,7 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock-Paper-Scissors!</title>
+
+    <!-- Writing the JS script for the project here -->
+     <script>
+        // testing script
+        console.log("Hello World!")
+
+        // Problem Statement: To write a program to play Rock-Paper-Scissors against the computer
+        // this program will have no GUI and run in the browser console.
+
+
+        // Get random string "Rock" or "Paper" or "Scissor" from computer
+        function getComputerChoice () {
+            // Return Random number inside getComputerChoice ()
+                // Convert decimal to whole number
+                // Get only 3 Random Numbers
+                // round the random number 
+                // store the value inside a variable
+            let randomInt = Math.floor(Math.random() * 3);
+
+            // assign "Rock", "Paper" and "Scissor" to the 3 random value and print them
+            if (randomInt === 0) {
+                return "Rock"
+            } else if (randomInt === 1) {
+                return "Scissors"
+            } else {
+                return "Paper"
+            }
+        }
+
+        // Get human player choice
+        function getHumanChoice () {
+            
+        }
+     </script>
 </head>
 <body>
     
