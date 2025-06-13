@@ -25,18 +25,38 @@
 
             // assign "Rock", "Paper" and "Scissor" to the 3 random value and print them
             if (randomInt === 0) {
-                return "Rock"
+                return "rock"
             } else if (randomInt === 1) {
-                return "Scissors"
+                return "scissors"
             } else {
-                return "Paper"
+                return "paper"
             }
         }
 
-        // Get human player choice
+        // Get human player choice by asking for input
+
         function getHumanChoice () {
-            
+            //Store human player input inside a variable
+            let humanInput = prompt('Enter: Rock, Paper or Scissors');
+            return humanInput
         }
+
+        // Keep Track of Human Score
+        let humanScore = 0;
+
+        // Keep track of Computer Score
+        let computerScore = 0;
+
+        // Keeping track of the Human and Computer Score for one Round
+        // take humanChoice and computerChoice as parameters
+        // humanChoice is case insensative
+        function playRound(humanChoice = getHumanChoice().toLowerCase(), computerChoice = getComputerChoice()) {
+            // Write logic of the game ie. Rock beats Scissors, Scissors beat Paper and Paper beats Rock
+            if (humanChoice === 'rock' && computerChoice === 'scissors') {
+                console.log()
+            }
+        }
+
      </script>
 </head>
 <body>
