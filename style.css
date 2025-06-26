@@ -1,0 +1,41 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.controls {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem;
+    justify-content: center;
+}
+
+.controls button {
+    padding: 0.5rem 1rem;
+    width: 6rem;
+    color: #080808;
+    text-transform: capitalize;
+}
+
+.container {
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: space-around;
+    padding: 4rem;
+    margin: 2rem;
+}
+
+#userChoice, #computerChoice {
+    flex: 1 1 0;
+    height: 40vh;
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+
+
