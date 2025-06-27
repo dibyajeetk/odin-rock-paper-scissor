@@ -5,18 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock-Paper-Scissors!</title>
     <link rel="stylesheet" href="style.css">
-
-    <!-- Writing the JS script for the project here -->
 </head>
 <body>
+    <h1>Rock, Paper, Scissors!</h1>
+    <div id="score-board">
+        <div id="score-label">
+            <p id="label">Players</p>
+            <p>round one</p>
+            <p>round Two</p>
+            <p>round three</p>
+            <p>round four</p>
+            <p>round five</p>
+            <p>Final Score</p>
+        </div>
+        <div id="user-score">
+           <p id="label">You:</p>
+           <p>-</p>
+           <p>-</p>
+           <p>-</p>
+           <p>-</p>
+           <p>-</p>
+           <p id="user-total">-</p>
+        </div>
+        <div id="computer-score">
+            <p id="label">Computer:</p>
+            <p>-</p>
+            <p>-</p>
+            <p>-</p>
+            <p>-</p>
+            <p>-</p>
+            <p id="computer-total">-</p>
+        </div>
+    </div>
     <div class="container">
         <div id="userChoice">
             <p>Your Choice:</p>
-            <h1 id="displayUserChoice">...</h1>
+            <p id="displayUserChoice">...</p>
         </div>
+        <p id="message"></p>
         <div id="computerChoice">
             <p>Computers Choice:</p>
-            <h1>Waiting...</h1>
+            <p id="displayComputerChoice">Waiting...</p>
         </div>
     </div>
     <div class="controls">

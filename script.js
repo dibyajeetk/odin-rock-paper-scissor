@@ -1,4 +1,12 @@
 // By Dibyajeet Kirttania
+let gameMessage = document.querySelector("#message");
+let userTotalScore = document.querySelector("#user-total");
+let computerTotalScore = document.querySelector("#computer-total");
+
+let playerScore = 0;
+let computerScore = 0;
+
+// Player Input
 let userControls = document.querySelector(".controls");
     
     let userInput = '';
@@ -7,16 +15,67 @@ let userControls = document.querySelector(".controls");
         let target = element.target;
         if (target.textContent === "rock") {
             userInput = target.textContent;
+            playRound();
         } else if (target.textContent === "paper") {
             userInput = target.textContent;
+            playRound();
         } else if (target.textContent == "scissors") {
             userInput = target.textContent;
+            playRound();
+        } else {
+            return;
         }
         let displayUserChoice = document.querySelector("#displayUserChoice")
-        displayUserChoice.textContent = userInput.toUpperCase();
+        return displayUserChoice.textContent = userInput.toLowerCase();
     });
 
+// Computer Input
 
+function computerChoice () {
+    let computerInput = '';
+    let randomInt = Math.floor(Math.random() * 3);
+    let displayComputerChoice = document.querySelector("#displayComputerChoice");
+    if (randomInt === 0) {
+        computerInput = "rock"
+    } else if (randomInt === 1) {
+        computerInput = "scissors"
+    } else {
+        computerInput = "paper"
+    }
+    return displayComputerChoice.textContent = computerInput;
+};
+
+function playRound (player, computer) {
+    
+    player = userInput;
+    computer = computerChoice();
+    
+    if (player === 'scissors' && computer === 'paper') {
+        gameMessage.textContent = "You win!";
+        playerScore++;
+        userTotalScore.textContent = playerScore;
+    } else if (player === 'rock' && computer === 'scissors') {
+        gameMessage.textContent = "You win!"
+        playerScore++;
+        userTotalScore.textContent = playerScore;
+    } else if (player === 'paper' && computer === 'rock') {
+        gameMessage.textContent = "You win!"
+        playerScore++;
+        userTotalScore.textContent = playerScore;
+    } else if (player === computer) {
+        gameMessage.textContent = "It\'s a tie!";
+    } else {
+        gameMessage.textContent = "Computer wins!"
+        computerScore++
+        computerTotalScore.textContent = computerScore;
+    }
+};
+
+function playGame () {
+    for (let i = 1; i <= 5; i++) {
+
+    }
+}
 
 
     // btn.map((button) => {
@@ -127,13 +186,4 @@ let userControls = document.querySelector(".controls");
 
     //     // Get random choice "Rock" or "Paper" or "Scissor" from computer
 
-    //     function getComputerChoice () {
-    //         let randomInt = Math.floor(Math.random() * 3);
-    //         if (randomInt === 0) {
-    //             return "rock"
-    //         } else if (randomInt === 1) {
-    //             return "scissors"
-    //         } else {
-    //             return "paper"
-    //         }
-    //     }
+    //     
