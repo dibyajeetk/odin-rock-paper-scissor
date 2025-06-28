@@ -18,7 +18,7 @@
             <p>round five</p>
             <p>Final Score</p>
         </div>
-        <div id="user-score">
+        <div id="player-score">
            <p id="label">You:</p>
            <p>-</p>
            <p>-</p>
@@ -38,20 +38,31 @@
         </div>
     </div>
     <div class="container">
-        <div id="userChoice">
+        <div id="player-choice">
             <p>Your Choice:</p>
-            <p id="displayUserChoice">...</p>
+            <p id="display-player-choice">...</p>
         </div>
         <p id="message"></p>
-        <div id="computerChoice">
+        <div id="computer-choice">
             <p>Computers Choice:</p>
-            <p id="displayComputerChoice">Waiting...</p>
+            <p id="display-computer-choice">Waiting...</p>
         </div>
     </div>
-    <div class="controls">
+    <div id="controls">
         <button>rock</button>
         <button>paper</button>
         <button>scissors</button>
+    </div>
+
+    <!-- modal -->
+    <div id="gameModal" class="modal hidden">
+        <div class="modal-content">
+            <div>
+                <h2 id="modalTitle">Game Over</h2>
+                <p id="modalMessage">You won the game!</p>
+            </div>
+            <button id="restartGame">Play Again</button>
+        </div>
     </div>
     <script src="./script.js" defer></script>
 </body>

@@ -1,189 +1,114 @@
-// By Dibyajeet Kirttania
-let gameMessage = document.querySelector("#message");
-let userTotalScore = document.querySelector("#user-total");
-let computerTotalScore = document.querySelector("#computer-total");
-
+const choices = ['rock' , 'paper', 'scissors'];
+const initialSymbols = ["-", "-", "-", "-", "-"];
+let rounds = 0;
 let playerScore = 0;
 let computerScore = 0;
+const displayPlayerChoice = document.querySelector("#display-player-choice");
+const displayComputerChoice = document.querySelector("#display-computer-choice")
+const roundStatus = document.querySelector("#message");
+const restartBtn = document.querySelector("#restartGame");
+const playerRoundUI = Array.from(document.querySelectorAll("#player-score p")).slice(1, -1);
+const playerTotalUI = Array.from(document.querySelectorAll("#player-score p")).slice(-1);
+const computerRoundUI = Array.from(document.querySelectorAll("#computer-score p")).slice(1, -1);
+const computerTotalUI = Array.from(document.querySelectorAll("#computer-score p")).slice(-1);
 
-// Player Input
-let userControls = document.querySelector(".controls");
-    
-    let userInput = '';
-
-    userControls.addEventListener("click", (element) => {
-        let target = element.target;
-        if (target.textContent === "rock") {
-            userInput = target.textContent;
-            playRound();
-        } else if (target.textContent === "paper") {
-            userInput = target.textContent;
-            playRound();
-        } else if (target.textContent == "scissors") {
-            userInput = target.textContent;
-            playRound();
-        } else {
-            return;
-        }
-        let displayUserChoice = document.querySelector("#displayUserChoice")
-        return displayUserChoice.textContent = userInput.toLowerCase();
-    });
-
-// Computer Input
 
 function computerChoice () {
-    let computerInput = '';
-    let randomInt = Math.floor(Math.random() * 3);
-    let displayComputerChoice = document.querySelector("#displayComputerChoice");
-    if (randomInt === 0) {
-        computerInput = "rock"
-    } else if (randomInt === 1) {
-        computerInput = "scissors"
-    } else {
-        computerInput = "paper"
-    }
-    return displayComputerChoice.textContent = computerInput;
+    let rand = Math.round((Math.random() * 2));
+    let choice = choices.at(rand)
+    // console.log(rand);
+    displayComputerChoice.textContent = choice;
+    return choice;
 };
 
-function playRound (player, computer) {
-    
-    player = userInput;
-    computer = computerChoice();
-    
-    if (player === 'scissors' && computer === 'paper') {
-        gameMessage.textContent = "You win!";
-        playerScore++;
-        userTotalScore.textContent = playerScore;
-    } else if (player === 'rock' && computer === 'scissors') {
-        gameMessage.textContent = "You win!"
-        playerScore++;
-        userTotalScore.textContent = playerScore;
-    } else if (player === 'paper' && computer === 'rock') {
-        gameMessage.textContent = "You win!"
-        playerScore++;
-        userTotalScore.textContent = playerScore;
-    } else if (player === computer) {
-        gameMessage.textContent = "It\'s a tie!";
-    } else {
-        gameMessage.textContent = "Computer wins!"
-        computerScore++
-        computerTotalScore.textContent = computerScore;
-    }
-};
 
-function playGame () {
-    for (let i = 1; i <= 5; i++) {
+let uiControls = document.querySelector("#controls");
+let playerChoice = '';
+uiControls.addEventListener("click", (e) => {
+    playerChoice = e.target.textContent;
+    if (choices.includes(playerChoice)) {
+        displayPlayerChoice.textContent = playerChoice; // updates UI with player choice
+        roundlogic()
+        rounds++
+        
+        // update UI for Total score
+        computerTotalUI[0].textContent = computerScore;
+        playerTotalUI[0].textContent = playerScore;
+    } else return;
+    return playerChoice;
+});
 
-    }
+function roundlogic (player = playerChoice, computer = computerChoice()) {
+
+
+    if (rounds < 4) {
+        if (player === computer) {
+            roundStatus.textContent = 'Tie!'
+
+            // updates round specific ui 
+            playerRoundUI[rounds].textContent = 'Tie';
+            computerRoundUI[rounds].textContent = 'Tie';
+        } else if (player === 'rock' && computer === 'scissors') {
+            roundStatus.textContent = 'Round Won!';
+            playerRoundUI[rounds].textContent = '1';
+            computerRoundUI[rounds].textContent = '0';
+            playerScore++;
+        } else if (player === 'paper' && computer === 'rock') {
+            roundStatus.textContent = 'Round Won!';
+            playerRoundUI[rounds].textContent = '1';
+            computerRoundUI[rounds].textContent = '0';
+            playerScore++;
+        } else if (player === 'scissors' && computer === 'paper') {
+            roundStatus.textContent = 'Round Won!';
+            playerRoundUI[rounds].textContent = '1';
+            computerRoundUI[rounds].textContent = '0';
+            playerScore++;
+        } else {
+            roundStatus.textContent = 'Round Lost!';
+            playerRoundUI[rounds].textContent = '0';
+            computerRoundUI[rounds].textContent = '1';
+            computerScore++
+        }
+    } else showModal()
+    console.log(rounds)
 }
 
+function showModal () {
+    const modal = document.querySelector("#gameModal");
+    const message = document.querySelector("#modalMessage");
 
-    // btn.map((button) => {
-    //     let btnLabel = button.textContent
-    //     console.log(btnLabel);
-    //     return btnLabel
-    // })
+    if (playerScore > computerScore) {
+        message.textContent = "You won the game!";
+    } else if (playerScore < computerScore) {
+        message.textContent = "Computer won the game!";
+    } else {
+        message.textContent = "It's a tie!";
+    }
+    modal.classList.remove("hidden"); // removes the .hidden css for modal
+};
 
-    // get user choice
-        // user clicks on button
-        // print button label
-    
-    
-    //    // play game
+restartBtn.addEventListener("click", () => {
+    // reset variable
+    rounds = 0;
+    playerScore = 0;
+    computerScore = 0;
 
-    //     function playGame(){
+    // reset text content
+    playerRoundUI.forEach((p, i) => {
+        p.textContent = '-';
+    });
+    playerTotalUI[0].textContent = '-';
 
-    //         let humanScore = 0;
+    computerRoundUI.forEach((p, i) => {
+        p.textContent = '-';
+    });
+    computerTotalUI[0].textContent = '-';
 
-    //         let computerScore = 0;
-
-    //         function playRound (humanChoice = getHumanChoice().toLowerCase(), computerChoice = getComputerChoice()) {
-    //             if (humanChoice === 'paper' && computerChoice === 'rock') {
-    //                 console.log(`You won! ${humanChoice} beats ${computerChoice}.`)
-    //                 return humanScore++;
-    //             } 
-    //             else if (humanChoice === 'scissors' && computerChoice === 'paper') {
-    //                 console.log(`You won! ${humanChoice} beats ${computerChoice}.`)
-    //                 return humanScore++;
-    //             } 
-    //             else if (humanChoice === 'rock' && computerChoice === 'scissors') {
-    //                 console.log(`You won! ${humanChoice} beats ${computerChoice}.`)
-    //                 return humanScore++;
-    //             } 
-    //             else if(humanChoice === computerChoice){
-    //                 console.log(`it's a tie! both chose: ${humanChoice}.`)
-    //             }
-    //             else {
-    //                 console.log(`Computer Won! ${computerChoice} beats ${humanChoice}.`)
-    //                 return computerScore++;
-    //             }
-    //         }
-
-    //         if (humanScore > computerScore) {
-    //             alert('You won!')
-    //         } else if (humanScore === computerScore) {
-    //             alert('It\'s a Tie')
-    //         } else {
-    //             alert('Computer Won, try again! Good Game!')
-    //         }
-    //     }
-
-    //     // initialize playGame()
-    //     // playGame();
-
-    //     // Game UI
-    //     let userChoice = document.createElement("div");
-    //     userChoice.setAttribute("id", "userChoice");
-    //     document.body.appendChild(userChoice);
-
-    //     let userChoiceText = document.createElement("h1");
-    //     userChoiceText.textContent = `Your choice: ${humanInput}`
-    //     userChoice.appendChild(userChoiceText);
-
-    //     let btnContainer = document.createElement("div");
-    //     btnContainer.setAttribute("id", "btnContainer")
-    //     document.body.appendChild(btnContainer);
+    displayPlayerChoice.textContent = '...';
+    displayComputerChoice.textContent = 'Waiting..';
+    roundStatus.textContent = '';
 
 
-    //     let btnOne = document.createElement("button");
-    //     btnOne.setAttribute("class", "button")
-    //     btnOne.textContent = "Rock";
-    //     btnContainer.appendChild(btnOne);
+    document.querySelector("#gameModal").classList.add("hidden"); // removes modal
+})
 
-    //     let btnTwo = document.createElement("button");
-    //     btnTwo.setAttribute("class", "button")
-    //     btnTwo.textContent = "Paper";
-    //     btnContainer.appendChild(btnTwo);
-
-    //     let btnThree = document.createElement("button");
-    //     btnThree.setAttribute("class", "button")
-    //     btnThree.textContent = "Scissors";
-    //     btnContainer.appendChild(btnThree);
-
-    //     // Get human player choice from button click
-       
-    //     btnContainer.addEventListener("click", (Event) => {
-    //         let target = Event.target;
-    //         if (target.tagName === "BUTTON") {
-    //             let buttonLabel = target.textContent;
-    //             let humanInput = 0;
-
-    //             if (buttonLabel === "Rock") {
-    //                 humanInput = buttonLabel.toLowerCase();
-    //                 console.log(humanInput)
-    //                 return humanInput;
-    //             } else if (buttonLabel === "Paper") {
-    //                 humanInput = buttonLabel.toLowerCase();
-    //                 console.log(humanInput)
-    //                 return humanInput;
-    //             } else if (buttonLabel === "Scissors") {
-    //                 humanInput = buttonLabel.toLowerCase()
-    //                 console.log(humanInput)
-    //                 return humanInput;
-    //             } else alert("WTF! Bro?")
-    //         }
-    //     });
-
-    //     // Get random choice "Rock" or "Paper" or "Scissor" from computer
-
-    //     
